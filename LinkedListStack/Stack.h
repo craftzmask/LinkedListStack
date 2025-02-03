@@ -1,5 +1,7 @@
 #pragma once
 
+#include "LinkedList.h"
+
 class Stack
 {
 public:
@@ -7,4 +9,7 @@ public:
 	int Pop();
 	int Size() const;
 	bool Empty() const;
+
+private:
+	LinkedList ll;
 };
