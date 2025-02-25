@@ -2,6 +2,7 @@
 #include <stdlib.h>  
 #include <crtdbg.h>  
 #include <conio.h>
+#include <iostream>
 #include "ChiliString.h"
 #include "Stack.h"
 
@@ -224,6 +225,8 @@ int main()
 	test8();
 	test9();
 	test10();
+
+	
 
 	_CrtDumpMemoryLeaks();
 	while( !_kbhit() );
