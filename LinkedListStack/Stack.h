@@ -46,9 +46,74 @@ private:
 			delete pNext;
 			pNext = nullptr;
 		}
-	private:
+
 		int val;
 		Element* pNext = nullptr;
+	};
+
+public:
+	class Iterator
+	{
+	public:
+		Iterator() = default;
+		Iterator(Element* pElement)
+			:
+			pElement(pElement)
+		{
+		}
+		Iterator& operator++()
+		{
+			pElement = pElement->pNext;
+			return *this;
+		}
+		int& operator*() const
+		{
+			return pElement->val;
+		}
+		int& operator*=(int n) const
+		{
+			pElement->val *= n;
+			return pElement->val;
+		}
+		bool operator!=(const Iterator& rhs) const
+		{
+			return pElement != rhs.pElement;
+		}
+
+	private:
+		Element* pElement = nullptr;
+	};
+
+	class ConstIterator
+	{
+	public:
+		ConstIterator() = default;
+		ConstIterator(Element* pElement)
+			:
+			pElement(pElement)
+		{
+		}
+		ConstIterator& operator++()
+		{
+			pElement = pElement->pNext;
+			return *this;
+		}
+		const int& operator*() const
+		{
+			return pElement->val;
+		}
+		int& operator*=(int n) const
+		{
+			pElement->val *= n;
+			return pElement->val;
+		}
+		bool operator!=(const ConstIterator& rhs) const
+		{
+			return pElement != rhs.pElement;
+		}
+
+	private:
+		Element* pElement = nullptr;
 	};
 public:
 	Stack() = default;
@@ -112,6 +177,23 @@ public:
 	{
 		return pTop == nullptr;
 	}
+	Iterator begin()
+	{
+		return { pTop };
+	}
+	Iterator end()
+	{
+		return {};
+	}
+	ConstIterator begin() const
+	{
+		return { pTop };
+	}
+	ConstIterator end() const
+	{
+		return {};
+	}
+
 private:
 	Element* pTop = nullptr;
 };
